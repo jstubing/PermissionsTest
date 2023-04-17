@@ -8,10 +8,10 @@ object HomeScreen : Destination {
     override val route = "home"
 }
 
-object RequiredPermissionsScreen : Destination {
-    override val route = "required_permissions"
+object ScreenBlockingPermissionsScreen : Destination {
+    override val route = "screen_blocking_permissions"
 }
 
-object OptionalPermissionsScreen : Destination {
-    override val route = "optional_permissions"
+object ActionBlockingPermissionsScreen : Destination {
+    override val route = "action_blocking_permissions"
 }

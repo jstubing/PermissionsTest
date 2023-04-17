@@ -30,6 +30,7 @@ import com.example.permissionstest.data.Permission
 import com.example.permissionstest.util.openAppSettings
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.google.accompanist.permissions.shouldShowRationale
 
 /**
  * This composable is meant to wrap a screen composable which won't be displayed until the
@@ -54,7 +55,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 fun PermissionRequiredScreen(
     requiredPermissions: List<String>,
     permissionGrantedContent: @Composable () -> Unit,
-    permissionDeniedContent: @Composable ((deniedPermission: String) -> Unit)? = null
+    permissionDeniedContent: @Composable ((deniedPermission: String, isPermanentlyDenied: Boolean) -> Unit)? = null
 ) {
     var firstDeniedPermission: String? by remember { mutableStateOf(null) }
 
@@ -88,9 +89,17 @@ fun PermissionRequiredScreen(
         permissionGrantedContent()
     } else {
         firstDeniedPermission?.let { permission ->
-            permissionDeniedContent?.invoke(permission) ?: PermissionDeniedContent(permission) {
-                context.openAppSettings()
-            }
+            val permissionState = permissionStates.permissions.first { it.permission == permission }
+            val isPermanentlyDenied = !permissionState.status.shouldShowRationale
+
+            permissionDeniedContent?.invoke(permission, isPermanentlyDenied)
+                ?: PermissionDeniedContent(permission, isPermanentlyDenied) {
+                    if (permissionState.status.shouldShowRationale) {
+                        permissionStates.launchMultiplePermissionRequest()
+                    } else {
+                        context.openAppSettings()
+                    }
+                }
         }
     }
 }
@@ -98,6 +107,7 @@ fun PermissionRequiredScreen(
 @Composable
 private fun PermissionDeniedContent(
     deniedPermission: String,
+    isPermanentlyDenied: Boolean,
     onOpenAppSettingsButtonClick: () -> Unit
 ) {
     val permission = Permission.fromPermission(deniedPermission)
@@ -123,7 +133,15 @@ private fun PermissionDeniedContent(
                 .padding(16.dp),
             onClick = onOpenAppSettingsButtonClick
         ) {
-            Text(stringResource(R.string.open_app_settings))
+            Text(
+                stringResource(
+                    if (isPermanentlyDenied) {
+                        R.string.open_app_settings
+                    } else {
+                        R.string.request_permission
+                    }
+                )
+            )
         }
     }
 }

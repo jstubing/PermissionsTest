@@ -1,6 +1,7 @@
 package com.example.permissionstest
 
-import android.Manifest
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.Manifest.permission.CAMERA
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -21,23 +22,20 @@ fun PermissionsTestNavHost(
         composable(route = HomeScreen.route) {
             HomeScreen(
                 onRequiredPermissionsButtonClick = {
-                    navController.navigateSingleTopTo(RequiredPermissionsScreen.route)
+                    navController.navigateSingleTopTo(ScreenBlockingPermissionsScreen.route)
                 },
                 onOptionalPermissionsButtonClick = {
-                    navController.navigateSingleTopTo(OptionalPermissionsScreen.route)
+                    navController.navigateSingleTopTo(ActionBlockingPermissionsScreen.route)
                 }
             )
         }
-        composable(route = RequiredPermissionsScreen.route) {
+        composable(route = ScreenBlockingPermissionsScreen.route) {
             PermissionRequiredScreen(
-                requiredPermissions = listOf(
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ),
+                requiredPermissions = listOf(CAMERA, ACCESS_FINE_LOCATION),
                 permissionGrantedContent = { PermissionsGrantedScreen() }
             )
         }
-        composable(route = OptionalPermissionsScreen.route) {
+        composable(route = ActionBlockingPermissionsScreen.route) {
             OptionalPermissionsScreen()
         }
     }

@@ -23,11 +23,11 @@ fun HomeScreen(
     ) {
         Column {
             Button(onClick = onRequiredPermissionsButtonClick) {
-                Text(stringResource(R.string.required_permissions))
+                Text(stringResource(R.string.screen_blocking_permissions))
             }
 
             Button(onClick = onOptionalPermissionsButtonClick) {
-                Text(stringResource(R.string.optional_permissions))
+                Text(stringResource(R.string.action_blocking_permissions))
             }
         }
     }

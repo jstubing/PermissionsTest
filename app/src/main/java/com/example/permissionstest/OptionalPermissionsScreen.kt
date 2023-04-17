@@ -61,6 +61,7 @@ fun OptionalPermissionsScreen() {
     val blueToothPermissionState =
         rememberMultiplePermissionsState(bluetoothPermissions) { results ->
             if (results.values.all { it }) {
+                // Bluetooth permissions granted, execute bluetooth functionality (using a toast for simplicity)
                 Toast.makeText(
                     context,
                     context.getString(R.string.executing_bluetooth_functionality),

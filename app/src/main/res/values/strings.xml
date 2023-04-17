@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PermissionsTest</string>
-    <string name="required_permissions">Required Permissions</string>
-    <string name="optional_permissions">Optional Permissions</string>
+    <string name="screen_blocking_permissions">Screen Blocking Permissions</string>
+    <string name="action_blocking_permissions">Action Blocking Permissions</string>
     <string name="permission_required">Permission Required</string>
     <string name="permissions_granted">Permissions Granted</string>
     <string name="camera_permission_required">Camera permission required</string>
