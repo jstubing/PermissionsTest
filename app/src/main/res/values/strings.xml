@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">PermissionsTest</string>
+    <string name="required_permissions">Required Permissions</string>
+    <string name="optional_permissions">Optional Permissions</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="permissions_granted">Permissions Granted</string>
+    <string name="camera_permission_required">Camera permission required</string>
+    <string name="camera_permission_granted">Camera permission granted</string>
+    <string name="request_permission">Request Permission</string>
+    <string name="open_app_settings">Open App Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="executing_camera_functionality">Executing camera functionality</string>
+    <string name="executing_bluetooth_functionality">Executing bluetooth functionality</string>
+    <string name="executing_location_functionality">Executing location functionality</string>
+    <string name="executing_notification_functionality">Executing notification functionality</string>
+    <string name="camera_permission_rationale">Camera permission is required in order to scan device QR codes and accelerate device set up.</string>
+    <string name="bluetooth_permission_rationale">Bluetooth permission is required in order to set up the hub.</string>
+    <string name="location_permission_rationale">Location permission is required in order to provide localized automation routines.</string>
+    <string name="notification_permission_rationale">Notification permission is required in order to be notified when significant events occur in your home.</string>
+    <string name="enable_permission_in_app_settings">This permission can be enabled in app settings.</string>
+</resources>
