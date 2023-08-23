@@ -46,8 +46,9 @@ import com.google.accompanist.permissions.shouldShowRationale
  * @param permissionGrantedContent composable content which gets emitted when all [requiredPermissions]
  * are granted.
  * @param permissionDeniedContent composable content which gets emitted when one or more [requiredPermissions]
- * are denied. Takes in the first denied permission as a parameter. If this composable is not specified,
- * the default behavior will be to show a rationale for the first denied permission with a link to
+ * are denied. Takes in the first denied permission and whether or not that permission was permanently
+ * denied as a parameter. If this composable is not specified, the default behavior will be to show a
+ * rationale screen for the first denied permission with a button to re-request the permission or open
  * app settings to enable it.
  */
 @OptIn(ExperimentalPermissionsApi::class)
